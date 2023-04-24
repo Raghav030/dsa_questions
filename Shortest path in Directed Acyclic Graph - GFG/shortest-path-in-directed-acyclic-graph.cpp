@@ -24,7 +24,11 @@ class Solution {
             ans[node]=min(ans[node],dis);
             for (int i=0; i<adj[node].size(); i++){
                 int t=adj[node][i].first;
-                q.push({t,dis+adj[node][i].second});
+                int index=0;
+                for (index=0; index<adj[node].size(); index++){
+                    if (adj[node][index].first==t) break;
+                }
+                if (ans[t]>dis+adj[node][index].second) q.push({t,dis+adj[node][i].second});
             }
         }
         for (int i=0; i<N; i++){
