@@ -28,7 +28,7 @@ class Solution {
                 for (index=0; index<adj[node].size(); index++){
                     if (adj[node][index].first==t) break;
                 }
-                if (ans[t]>dis+adj[node][index].second) q.push({t,dis+adj[node][i].second});
+                if (ans[t]>ans[node]+adj[node][index].second) q.push({t,dis+adj[node][i].second});
             }
         }
         for (int i=0; i<N; i++){
