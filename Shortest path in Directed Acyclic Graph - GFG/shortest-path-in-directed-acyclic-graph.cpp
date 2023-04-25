@@ -16,26 +16,32 @@ class Solution {
         for (int i=0; i<M; i++){
             adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
         }
-        q.push({0,0});
-        while (!q.empty()){
-            int node=q.front().first;
-            int dis=q.front().second;
-            q.pop();
-            ans[node]=min(ans[node],dis);
-            for (int i=0; i<adj[node].size(); i++){
+        int V=N;
+        set <pair<int,int>> s;
+        vector <int> dis(V,1e9);
+        s.insert({0,0});
+        dis[0]=0;
+        while (!s.empty()){
+            auto it=*(s.begin());
+            int distance=it.first;
+            int node=it.second;
+            // dis[node]=distance;
+            s.erase({distance,node});
+            for (int i=0; i<adj[node].size();i++){
                 int t=adj[node][i].first;
-                int index=0;
-                for (index=0; index<adj[node].size(); index++){
-                    if (adj[node][index].first==t) break;
+                if (dis[node]+adj[node][i].second<dis[t]){
+                    if (dis[t]!=1e9){
+                        s.erase({dis[t],t});
+                    }
+                    s.insert({distance+adj[node][i].second,t});
+                    dis[t]=dis[node]+adj[node][i].second;
                 }
-                // if (ans[t]>ans[node]+adj[node][index].second) 
-                q.push({t,dis+adj[node][i].second});
             }
         }
-        for (int i=0; i<N; i++){
-            if (ans[i]==1e9) ans[i]=-1;
+        for (int i=0; i<dis.size(); i++){
+            if (dis[i]==1e9) dis[i]=-1;
         }
-        return ans;
+        return dis;
     }
 };
 
