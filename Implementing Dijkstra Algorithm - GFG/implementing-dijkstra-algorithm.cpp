@@ -27,7 +27,7 @@ class Solution
                     if (dis[t]!=1e9){
                         s.erase({dis[t],t});
                     }
-                    s.insert({dis[node]+adj[node][i][1],t});
+                    s.insert({distance+adj[node][i][1],t});
                     dis[t]=dis[node]+adj[node][i][1];
                 }
             }
