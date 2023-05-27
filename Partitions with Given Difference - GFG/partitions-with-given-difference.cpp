@@ -14,7 +14,8 @@ class Solution {
         // return sum;
         int mod=1e9+7;
         if ((sum%2==0 and d%2==1) or (sum%2==1 and d%2==0)) return 0;
-        int maxsum= (sum+d)/2;
+        int maxsum= (sum-d)/2;
+        if (maxsum<0) return 0;
         vector<vector<int>> dp (n+1, vector<int>(maxsum+1, 0));
         for (int i=0; i<n+1; i++){
             for (int j=0; j<maxsum+1; j++){
