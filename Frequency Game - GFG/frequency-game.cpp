@@ -19,17 +19,17 @@ public:
         int ans=0;
         int temp=n;
         while (!us.empty()){
-            auto it= us.begin();
-            if (it->second <temp){
-                ans=it->first;
-                temp=it->second;
+            auto it= *(us.begin());
+            if (it.second <temp){
+                ans=it.first;
+                temp=it.second;
             }
-            else if (it->second == temp){
-                if (it->first> ans){
-                    ans=it->first;
+            else if (it.second == temp){
+                if (it.first> ans){
+                    ans=it.first;
                 }
             }
-            us.erase(it);
+            us.erase(us.begin());
         }
         return ans;
     }
