@@ -14,7 +14,7 @@ public:
         // else ans+='1';
         for (int i=29; i>=0; i--){
             int p=(N>>i & 1);
-            ans+=char('0'+p);
+            ans+=to_string(p);
         }
         return ans;
     }
