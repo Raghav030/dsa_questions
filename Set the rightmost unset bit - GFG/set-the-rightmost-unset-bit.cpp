@@ -18,7 +18,7 @@ public:
                     j+=1;
                 }
                 if (j==30) return N;
-                N+=(pow(2,i));
+                N=N | 1<<i;
                 break;
             }
         }
