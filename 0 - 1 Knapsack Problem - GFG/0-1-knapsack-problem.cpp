@@ -8,27 +8,21 @@ class Solution
 {
     public:
     //Function to return max value that can be put in knapsack of capacity W.
-    int maxcapacity(int W, int n, int wt[], int val[],vector<vector<int>>& valperweight){
-        if (W<=0 or n<0){
-            return 0;
+    int fmaxweight (int W, int wt[], int val[], int n, vector<vector<int>>& dp){
+        if (n==0 or W==0) return 0;
+        if (dp[n][W]!=0) return dp[n][W];
+        if (W>=wt[n-1]){
+            int take=val[n-1]+ fmaxweight(W-wt[n-1], wt, val, n-1, dp);
+            int nottake=fmaxweight(W, wt, val, n-1, dp);
+            return dp[n][W]= max(take, nottake);
         }
-        if (valperweight[n][W] != -1){
-            return valperweight[n][W];
-        }
-        if (wt[n]<=W){
-            int take= val[n] + maxcapacity(W-wt[n], n-1, wt, val, valperweight);
-            int nottake= maxcapacity(W, n-1, wt, val, valperweight);
-            return valperweight[n][W]= max(take, nottake);
-            }
-        else {
-            return valperweight[n][W]= maxcapacity(W, n-1, wt, val, valperweight);
-        }    
+        else return dp[n][W]= fmaxweight(W, wt, val, n-1, dp);
     }
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        // Your code here
-       vector<vector<int>> valperweight(n, vector<int> (W+1, -1));
-       return maxcapacity(W, n-1, wt, val, valperweight);
+       vector <vector <int>> dp(n+1, vector<int>(W+1, 0));
+       return fmaxweight(W, wt, val, n, dp);
     }
 };
 
