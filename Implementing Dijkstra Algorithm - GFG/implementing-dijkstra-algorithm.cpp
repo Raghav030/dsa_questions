@@ -11,28 +11,27 @@ class Solution
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
-        set <pair<int,int>> s;
-        vector <int> dis(V,1e9);
-        s.insert({0,S});
-        dis[S]=0;
-        while (!s.empty()){
-            auto it=*(s.begin());
-            int distance=it.first;
-            int node=it.second;
-            // dis[node]=distance;
-            s.erase({distance,node});
-            for (int i=0; i<adj[node].size();i++){
-                int t=adj[node][i][0];
-                if (dis[node]+adj[node][i][1]<dis[t]){
-                    if (dis[t]!=1e9){
-                        s.erase({dis[t],t});
-                    }
-                    s.insert({distance+adj[node][i][1],t});
-                    dis[t]=dis[node]+adj[node][i][1];
+        priority_queue <pair<int, int>> pq;
+        // for (int i=0; i<adj[S].size(); i++){
+        //     pq.push({adj[S][i][1], adj[S][i][0]});
+        // }
+        pq.push({0, S});
+        vector <int> ans(V, 1e9);
+        ans[S]=0;
+        while (!pq.empty()){
+            int node= pq.top().second;
+            int distance= pq.top().first;
+            pq.pop();
+            for (int i=0; i<adj[node].size(); i++){
+                int next_node= adj[node][i][0];
+                int neighbour_distance= adj[node][i][1];
+                if (ans[next_node]> distance+neighbour_distance){
+                    ans[next_node]=distance+neighbour_distance;
+                    pq.push({distance+neighbour_distance, next_node});
                 }
             }
         }
-        return dis;
+        return ans;
     }
 };
 
