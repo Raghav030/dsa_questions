@@ -13,14 +13,19 @@ class Solution{
     public:
     vector<int> leaders(int a[], int n){
         // Code here
-        int right_maxi=a[n-1];
-        vector<int> leaders;
-        for (int i=n-1; i>=0; i--){
-            if (a[i]>= right_maxi) leaders.push_back(a[i]);
-            right_maxi=max(right_maxi, a[i]);
+        vector <int> ans;
+        int end_maxi = a[n-1];
+        ans.push_back(a[n-1]);
+        int i= n-2;
+        while (i>=0){
+            if (a[i]>= end_maxi){
+                ans.push_back(a[i]);
+                end_maxi= max(a[i], end_maxi);
+            }
+            i-=1;
         }
-        reverse(leaders.begin(), leaders.end());
-        return leaders;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
