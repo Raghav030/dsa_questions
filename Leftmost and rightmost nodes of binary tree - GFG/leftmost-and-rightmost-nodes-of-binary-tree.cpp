@@ -130,7 +130,7 @@ struct Node
      struct Node* right;
 };
 */
-void fbfs(queue<Node*>& q, vector <int>& ans){
+void fbfs(queue<Node*> q, vector <int>& ans){
     if (q.empty()) return;
     Node* first_node= q.front();
     ans.push_back(q.front()-> data);
