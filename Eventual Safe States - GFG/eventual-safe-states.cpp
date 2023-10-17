@@ -28,7 +28,7 @@ class Solution {
             vect[cur]=3;
             return 0;
         }
-        else return 2;
+        else return 1;
         // cout<< vect[cur];
     }
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
