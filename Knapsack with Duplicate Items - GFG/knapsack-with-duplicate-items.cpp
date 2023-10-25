@@ -9,31 +9,19 @@ using namespace std;
 
 class Solution{
 public:
-    int fmaxival(int N, int W, int val[], int wt[], vector <vector<int>>& dp){
-       if (N<=0 or W<=0) return 0;
-       int take=0;
-       int cur_weight=W;
-       if (dp[N][W]!=-1) return dp[N][W];
-       if (W-wt[N-1] >=0){
-        //   cout<<N<<W;
-           take =val[N-1] + fmaxival(N, W-wt[N-1], val, wt, dp);
-        //   take=max(take, temp);
-        //   cur_weight-=wt[N-1];
-       }
-       int nottake= fmaxival(N-1, W, val, wt, dp);
-       return dp[N][W]= max(take, nottake);
-    }
     int knapSack(int N, int W, int val[], int wt[])
     {
         // code here
-        vector <vector <int>> dp(N+1, vector <int> (W+1,-1));
-        for (int i=0; i<N;i++){
-            for (int j=0; j<W; j++){
-                if (i==0 or j==0) dp[i][j]=0;
+        vector<vector<int>> profit(N+1, vector<int>(W+1, 0));
+        for (int i=1; i<=N; i++){
+            for (int j=1; j<=W; j++){
+                int take=0;
+                if (j>= wt[i-1]) take= val[i-1]+ profit[i][j-wt[i-1]];
+                int nottake= profit[i-1][j];
+                profit[i][j]= max(take, nottake);
             }
         }
-        fmaxival(N, W, val, wt, dp);
-        return dp[N][W];
+        return profit[N][W];
     }
 };
 
