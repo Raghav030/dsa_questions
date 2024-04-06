@@ -3,7 +3,7 @@ public:
     string minRemoveToMakeValid(string s) {
         int temp=0;
         int n=s.size();
-        for (int i=0; i<s.size(); i++){
+        for (int i=0; i<n; i++){
             if (s[i]=='(') temp+=1;
             if (s[i]==')') temp-=1;
             if (temp<0){
