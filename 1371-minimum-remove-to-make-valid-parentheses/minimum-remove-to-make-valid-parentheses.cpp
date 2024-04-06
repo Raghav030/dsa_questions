@@ -12,7 +12,7 @@ public:
                 i-=1;
             }
         }
-        int i=s.size()-1;
+        int i=n-1;
         while (temp>0){
             if (s[i]=='('){
                 s.erase(i, 1);
