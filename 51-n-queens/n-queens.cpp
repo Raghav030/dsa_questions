@@ -1,5 +1,6 @@
 class Solution {
 public:
+    vector<vector<string>> ans;
     bool checkposition(vector<string>& vect, int row, int col, int n){
         for (int i=0; i<n; i++){
             if (vect[row][i]=='Q') return false;
@@ -33,7 +34,7 @@ public:
         }
         return true;
     }
-    void fnqueens(int n, int row, int col, vector<string>& vect, vector<vector<string>>& ans){
+    void fnqueens(int n, int row, int col, vector<string>& vect){
         if (n==row){
             ans.push_back(vect);
             return;
@@ -41,13 +42,13 @@ public:
         for (int i=0; i<n; i++){
             if (checkposition(vect, row, i, n)==true){
                 vect[row][i]='Q';
-                fnqueens(n, row+1,col, vect, ans);
+                fnqueens(n, row+1,col, vect);
                 vect[row][i]='.';
             }
         }
     }
     vector<vector<string>> solveNQueens(int n) {
-        vector<vector<string>> ans;
+        // vector<vector<string>> ans;
         vector<string> vect(n,string(n, '.'));
         // for (int i=0; i<n; i++){
         //     vector<string> vect(n,string(n, '.'));
@@ -74,7 +75,7 @@ public:
         //         ans.push_back(vect);
         //     }
         // }
-        fnqueens(n, 0, 0, vect, ans);
+        fnqueens(n, 0, 0, vect);
         return ans;
         
     }
