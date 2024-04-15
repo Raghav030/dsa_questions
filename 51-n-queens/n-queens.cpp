@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool checkposition(vector<string> vect, int row, int col, int n){
+    bool checkposition(vector<string>& vect, int row, int col, int n){
         for (int i=0; i<n; i++){
             if (vect[row][i]=='Q') return false;
         }
