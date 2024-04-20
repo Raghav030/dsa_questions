@@ -20,8 +20,8 @@ bool checknum(char k, int row, int col, vector<vector<char>> board){
                                 cout<<1;
                                 return true;
                             }
-                            board[i][j]='.';
                         }
+                        board[i][j]='.';
                     }
                     return false;
                 }
