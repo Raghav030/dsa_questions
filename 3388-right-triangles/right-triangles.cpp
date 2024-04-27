@@ -19,7 +19,6 @@ public:
                 if (grid[i][j]==1){
                     rvect[i]+=1;
                     cvect[j]+=1;
-                    
                 }
             }
         }
