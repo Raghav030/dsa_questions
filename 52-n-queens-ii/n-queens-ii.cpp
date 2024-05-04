@@ -18,14 +18,14 @@ public:
         }
         return true;
     }
-    void fnqueen(int n, int row, int col,vector<string>& vect,  int& ans){
+    void fnqueen(int n, int row,vector<string>& vect,  int& ans){
         if (row== n){
             ans+=1;
         }
         for (int i=0; i<n; i++){
             if (checkposition(row,i, vect, n)==true){
                 vect[row][i]='Q';
-                fnqueen(n, row+1, i, vect, ans);
+                fnqueen(n, row+1, vect, ans);
                 vect[row][i]='.';
             }
         }
@@ -33,7 +33,7 @@ public:
     int totalNQueens(int n) {
         int ans=0;
         vector<string> vect(n, string(n, '.'));
-        fnqueen(n, 0, 0,vect, ans);
+        fnqueen(n, 0,vect, ans);
         return ans;
     }
 };
