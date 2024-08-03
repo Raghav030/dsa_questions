@@ -7,9 +7,9 @@ public:
            mpp[arr[i]]+=1; 
         }
         for (int i=0; i<n; i++){
-            if (mpp.find(target[i])== mpp.end()) return false;
+            if (mpp.find(target[i])== mpp.end() or mpp[target[i]]==0) return false;
             mpp[target[i]]-=1;
-            if (mpp[target[i]]==0) mpp.erase(target[i]);
+            // if (mpp[target[i]]==0) mpp.erase(target[i]);
         }
         return true;
     }
