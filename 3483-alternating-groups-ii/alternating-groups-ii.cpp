@@ -12,15 +12,15 @@ public:
         //     return n-k+1;
         // }
         // return 0;
-        for(int m=0; m<n+k-1; m++){
+        for(int i=0; i<n+k-1; i++){
+            if (i!=0 and colors[i%n] == colors[(i-1)%n]){
+                j=i;
+            }
             if (i-j+1>=k) {
                 cout<<i<<i-j+1<<endl;
                 ans+=1;
             }
-            i+=1;
-            if (colors[i%n] == colors[(i-1)%n]){
-                j=i;
-            }
+            // i+=1;
             // else{
             //     i=i+1;
             //     j=i;
