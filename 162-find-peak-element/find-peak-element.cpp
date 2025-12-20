@@ -12,7 +12,7 @@ public:
             if (nums[mid]>nums[mid+1]) right=mid-1;
             else left=mid+1;
         }
-        int mid= left+(right-left)/2;
+        int mid= (left+right)/2;
         return mid;
         
     }
