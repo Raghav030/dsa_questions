@@ -34,12 +34,12 @@ public:
         for (auto vertical: mpp){
             vector<int> cur;
             for (auto level: vertical.second){
-                // while (level.second.size()>0) {
+                for (int num: level.second) {
                     // int cur_num= *level.second.begin();
-                    // cur.push_back(cur_num);
+                    cur.push_back(num);
                     // level.second.erase(cur_num);
-                cur.insert(cur.end(), level.second.begin(), level.second.end());
-                // } 
+                // cur.insert(cur.end(), level.second.begin(), level.second.end());
+                } 
             }
             ans.push_back(cur);
         }
