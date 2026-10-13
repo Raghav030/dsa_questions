@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select name from (select manager.id, manager.name as name, count(employee.id) as cnt from employee manager left join employee on manager.id = employee.managerid group by manager.name, manager.id) tables where coalesce(cnt, 0)>=5
