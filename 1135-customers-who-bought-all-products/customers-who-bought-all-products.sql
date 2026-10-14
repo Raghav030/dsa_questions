@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+-- select distinct customer_id from customer where customer_id not in (select customer_id from (select distinct customer.customer_id, customer.product_key from product outer join customer on 1=1 where product_key is null)kl) 
+
+select distinct customer_id from customer where customer_id in (select customer_id from (select customer_id, count(distinct product_key) as cnt from (select distinct customer.customer_id, product.product_key from customer left join product on customer.product_key = product.product_key)ipp group by customer_id having cnt = (select count(*) from product)) jkmp)
