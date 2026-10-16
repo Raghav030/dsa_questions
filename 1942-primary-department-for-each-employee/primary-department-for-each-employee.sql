@@ -1,2 +1,2 @@
 # Write your MySQL query statement below
-select employee_id, department_id from employee where primary_flag ='Y' union select employee_id, department_id from employee where employee_id in (select employee_id from (select employee_id, count(distinct department_id) as cnt from employee group by employee_id having cnt=1) kkp)
+ select employee_id, department_id from employee where employee_id in (select employee_id from (select employee_id, count(distinct department_id) as cnt from employee group by employee_id having cnt=1) kkp) union select employee_id, department_id from employee where primary_flag ='Y'
