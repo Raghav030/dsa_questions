@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select distinct num as ConsecutiveNums from (select *, lag(num, 1) over (order by id) as num_before, lag(num, 2) over (order by id) as num_second_before from logs) kkp where num = num_before and num = num_second_before
