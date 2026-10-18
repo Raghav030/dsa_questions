@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select  (case when seat.id%2=0 then seat.id-1 when (seat.id = (select max(seat.id) from seat)) then seat.id else seat.id+1 end) as id, coalesce(seat.student) as student from seat order by id
