@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select round(sum(tiv_2016),2) as tiv_2016 from insurance where (lat, lon)  in (select lat, lon from (select lat, lon, count(*) as cnt from insurance group by lat, lon having cnt=1) ko) and tiv_2015 in (select tiv_2015 from (select tiv_2015, count(*) as cnt from insurance group by tiv_2015 having cnt>1) kp)
