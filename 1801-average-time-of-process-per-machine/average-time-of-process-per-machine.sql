@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+-- select machine_id, round(avg(processing_time),3) as processing_time from (select start_activity.machine_id, abs(end_activity.timestamp- start_activity.timestamp) as processing_time from activity start_activity join activity end_activity on start_activity.machine_id = end_activity.machine_id and start_activity.process_id= end_activity.process_id and start_activity.activity_type != end_activity.activity_type) kkp group by machine_id
+
+select machine_id, round(avg(end_time-start_time), 3) as processing_time from (select machine_id, lag(timestamp, 1) over (partition by machine_id, process_id order by timestamp) as start_time, timestamp as end_time, activity_type from activity) processing_time_pivoted_up where activity_type= "end" group by machine_id
