@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+-- select id from (select distinct id, temperature, lag(temperature,1) over (order by recorddate) as previous_date_temperature from weather) temperature_with_previous_date_temperature where temperature> previous_date_temperature
+select current_weather.id from weather current_weather join weather previous_day_weather on  timestampdiff(day, previous_day_weather.recorddate, current_weather.recorddate)=1 and current_weather.temperature> previous_day_weather.temperature
